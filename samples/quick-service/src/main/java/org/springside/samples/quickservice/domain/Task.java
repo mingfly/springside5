@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springside.modules.domain.IdEntity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 // JPA实体类标识
 @Entity
@@ -52,7 +53,14 @@ public class Task extends IdEntity {
 
 	// 持久化时忽略本字段，仅用于JSON输出
 	@Transient
+	@JsonProperty("user")
 	public String getUserName() {
 		return user.getName();
+	}
+
+	// 仅用于客户端解释JSON时使用
+	public void setUserName(String name) {
+		user = new User();
+		user.setName(name);
 	}
 }

@@ -20,4 +20,8 @@ public class TaskService {
 	public List<Task> getAllTask() {
 		return (List<Task>) taskDao.findAll();
 	}
+
+	public Task getTask(Long id) {
+		return taskDao.findOne(id);
+	}
 }
