@@ -68,14 +68,14 @@ public class TaskRestServiceTest {
 		Task firstTask = tasks.get(0);
 
 		assertThat(firstTask.getTitle()).isEqualTo("Spring Boot");
-		assertThat(firstTask.getUserName()).isEqualTo("Admin");
+		assertThat(firstTask.getUserName()).isEqualTo("Calvin");
 	}
 
 	@Test
 	public void getTask() {
 		Task task = restTemplate.getForObject(resourceUrl + "/{id}", Task.class, 1L);
 		assertThat(task.getTitle()).isEqualTo("Spring Boot");
-		assertThat(task.getUserName()).isEqualTo("Admin");
+		assertThat(task.getUserName()).isEqualTo("Calvin");
 	}
 
 }

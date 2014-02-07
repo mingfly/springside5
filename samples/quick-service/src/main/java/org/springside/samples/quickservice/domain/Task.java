@@ -58,7 +58,7 @@ public class Task extends IdEntity {
 		return user.getName();
 	}
 
-	// 仅用于客户端解释JSON时使用
+	// 仅用于客户端解释JSON到Task对象时，省略了DTO的代价
 	public void setUserName(String name) {
 		user = new User();
 		user.setName(name);
