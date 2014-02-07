@@ -40,6 +40,7 @@ public class Task extends IdEntity {
 	// 基于user_id列的多对一关系定义.
 	@ManyToOne
 	@JoinColumn(name = "user_id")
+	// JSON输出时忽略本字段
 	@JsonIgnore
 	public User getUser() {
 		return user;
@@ -49,6 +50,7 @@ public class Task extends IdEntity {
 		this.user = user;
 	}
 
+	// 持久化时忽略本字段，仅用于JSON输出
 	@Transient
 	public String getUserName() {
 		return user.getName();

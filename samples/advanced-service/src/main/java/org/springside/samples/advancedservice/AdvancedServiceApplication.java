@@ -13,8 +13,6 @@ import org.springframework.context.annotation.Configuration;
 public class AdvancedServiceApplication {
 
 	public static void main(String[] args) throws Exception {
-		SpringApplication app = new SpringApplication(AdvancedServiceApplication.class);
-		app.setShowBanner(false);
-		app.run(args);
+		SpringApplication.run(AdvancedServiceApplication.class, args);
 	}
 }
