@@ -1,5 +1,5 @@
-insert into ss_user (id, login_name, name, register_date) values(1,'admin','Admin', '2012-06-04 01:00:00');
-insert into ss_user (id, login_name, name, register_date) values(2,'user','Calvin', '2012-06-04 02:00:00');
+insert into ss_user (id, name) values(1,'Admin');
+insert into ss_user (id, name) values(2,'Calvin');
 
 insert into ss_task (id, title, description, user_id) values(1, 'Spring Boot', 'Study Spring Boot', 2);
 insert into ss_task (id, title, description, user_id) values(2, 'Thymeleaf', 'Study Thymeleaf', 2);

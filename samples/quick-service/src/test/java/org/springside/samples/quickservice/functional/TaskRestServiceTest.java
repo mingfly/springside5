@@ -18,29 +18,30 @@ package org.springside.samples.quickservice.functional;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.web.client.RestTemplate;
+import org.springside.modules.test.data.RandomData;
 import org.springside.samples.quickservice.QuickServiceApplication;
 import org.springside.samples.quickservice.domain.Task;
+import org.springside.samples.quickservice.domain.User;
 
 public class TaskRestServiceTest {
 	private static ConfigurableApplicationContext context;
 
 	private RestTemplate restTemplate = new RestTemplate();
 	private String resourceUrl = "http://localhost:8080/task";
-
-	private static class TaskList extends ArrayList<Task> {
-	}
 
 	@BeforeClass
 	public static void start() throws Exception {
@@ -68,14 +69,53 @@ public class TaskRestServiceTest {
 		Task firstTask = tasks.get(0);
 
 		assertThat(firstTask.getTitle()).isEqualTo("Spring Boot");
-		assertThat(firstTask.getUserName()).isEqualTo("Calvin");
+		assertThat(firstTask.getUser().getName()).isEqualTo("Calvin");
 	}
 
 	@Test
 	public void getTask() {
 		Task task = restTemplate.getForObject(resourceUrl + "/{id}", Task.class, 1L);
 		assertThat(task.getTitle()).isEqualTo("Spring Boot");
-		assertThat(task.getUserName()).isEqualTo("Calvin");
+		assertThat(task.getUser().getName()).isEqualTo("Calvin");
+	}
+
+	@Test
+	public void createUpdateAndDeleteTask() {
+
+		// create
+		Task task = randomTask();
+
+		URI createdTaskUri = restTemplate.postForLocation(resourceUrl, task);
+		System.out.println(createdTaskUri.toString());
+		Task createdTask = restTemplate.getForObject(createdTaskUri, Task.class);
+		assertThat(createdTask.getTitle()).isEqualTo(task.getTitle());
+
+		// update
+		String id = StringUtils.substringAfterLast(createdTaskUri.toString(), "/");
+		task.setId(new Long(id));
+		task.setTitle(RandomData.randomName("Task"));
+
+		restTemplate.put(createdTaskUri, task);
+
+		Task updatedTask = restTemplate.getForObject(createdTaskUri, Task.class);
+		assertThat(updatedTask.getTitle()).isEqualTo(task.getTitle());
+
+		// delete
+		restTemplate.delete(createdTaskUri);
+		Task deletedTask = restTemplate.getForObject(createdTaskUri, Task.class);
+		assertThat(deletedTask).isNull();
+	}
+
+	public static Task randomTask() {
+		Task task = new Task();
+		task.setTitle(RandomData.randomName("Task"));
+		User user = new User(1L);
+		task.setUser(user);
+		return task;
+	}
+
+	// ArrayList<Task>在RestTemplate转换时不好表示，创建一个类来表达它是最简单的。
+	private static class TaskList extends ArrayList<Task> {
 	}
 
 }

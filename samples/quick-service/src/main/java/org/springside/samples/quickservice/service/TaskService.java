@@ -8,9 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springside.samples.quickservice.domain.Task;
 import org.springside.samples.quickservice.repository.TaskDao;
 
-//Spring Bean的标识.
+// Spring Bean的标识.
 @Component
-// 默认将类中的所有public函数纳入事务管理.
+// 类中所有public函数都纳入事务管理的标识.
 @Transactional
 public class TaskService {
 
@@ -23,5 +23,13 @@ public class TaskService {
 
 	public Task getTask(Long id) {
 		return taskDao.findOne(id);
+	}
+
+	public void saveTask(Task task) {
+		taskDao.save(task);
+	}
+
+	public void deleteTask(Long id) {
+		taskDao.delete(id);
 	}
 }

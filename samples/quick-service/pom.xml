@@ -17,6 +17,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.6</java.version>
+
+		<springside.version>5.0.0-SNAPSHOT</springside.version>
 	</properties>
 
 	<dependencies>
@@ -31,25 +33,28 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.hsqldb</groupId>
+					<artifactId>hsqldb</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springside.modules</groupId>
 			<artifactId>springside5-core</artifactId>
-			<version>5.0.0-SNAPSHOT</version>
+			<version>${springside.version}</version>
 		</dependency>
 
+		<!-- database -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-		</dependency>
-
+		<!-- utils -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
@@ -66,6 +71,13 @@
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
 			<version>1.5.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springside.modules</groupId>
+			<artifactId>springside5-core</artifactId>
+			<version>${springside.version}</version>
+			<classifier>tests</classifier>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

@@ -15,6 +15,7 @@ import org.springside.samples.quickservice.domain.Task;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = QuickServiceApplication.class)
 public class TaskDaoTest {
+
 	@Autowired
 	private TaskDao taskDao;
 

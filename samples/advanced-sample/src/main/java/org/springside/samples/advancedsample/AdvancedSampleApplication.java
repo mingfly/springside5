@@ -1,4 +1,4 @@
-package org.springside.samples.advancedservice;
+package org.springside.samples.advancedsample;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Configuration;
 @EnableAutoConfiguration
 @EnableConfigurationProperties
 @ComponentScan
-public class AdvancedServiceApplication {
+public class AdvancedSampleApplication {
 
 	public static void main(String[] args) throws Exception {
-		SpringApplication.run(AdvancedServiceApplication.class, args);
+		SpringApplication.run(AdvancedSampleApplication.class, args);
 	}
 }
