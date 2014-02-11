@@ -38,7 +38,7 @@
 	<modules>
 		<module>modules/core</module>
 		<module>samples/quick-services</module>
-		<module>samples/advanced-services</module>
+		<module>samples/advanced-sample</module>
   	</modules>
 
     <issueManagement>
