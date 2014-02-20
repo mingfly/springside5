@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.0.0.RC1</version>
+		<version>1.0.0.RC3</version>
 	</parent>
 
 	<groupId>org.springside.samples</groupId>
@@ -22,6 +22,7 @@
 	</properties>
 
 	<dependencies>
+		<!-- spring boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -35,6 +36,7 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
+		<!-- springside -->
 		<dependency>
 			<groupId>org.springside.modules</groupId>
 			<artifactId>springside5-core</artifactId>
@@ -61,12 +63,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
 			<version>1.5.0</version>
 			<scope>test</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springside.modules</groupId>
 			<artifactId>springside5-core</artifactId>
