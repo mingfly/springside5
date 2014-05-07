@@ -37,7 +37,7 @@
 
 	<modules>
 		<module>modules/core</module>
-		<module>samples/quick-services</module>
+		<module>samples/quick-service</module>
 		<module>samples/advanced-sample</module>
   	</modules>
 
