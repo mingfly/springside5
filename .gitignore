@@ -9,3 +9,6 @@ target
 # other
 local-script
 
+#idea
+springsid*.iml
+/.idea
